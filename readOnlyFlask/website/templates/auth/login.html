@@ -1,0 +1,20 @@
+{% extends "base.html" %}{% import "bootstrap/wtf.html" as wtf %}
+
+
+{% block title %}Log In (Actual){% endblock %}
+{% block content %}
+<p>This is the login page</p>
+{{ wtf.quick_form(loginForm) }}
+
+<div class="container">
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{ message }}
+    </div>
+    {% endfor %}
+
+    {% block page_content %}{% endblock %}
+</div>
+
+{% endblock %}

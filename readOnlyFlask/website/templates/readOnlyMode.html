@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+
+{% block title %}Read Only Mode{% endblock %}
+{% block content %}
+<body>
+Hello,
+{% if current_user.is_authenticated %}
+    {{ current_user.username }}
+{% else %}
+    Stranger
+{% endif %}!
+
+{% endblock %}
+</body>
+<!--
+    Don't need the webform package imported: {% import "bootstrap/wtf.html" as wtf %}
+{% block page_content %}
+<div class="page-header">
+    <h1>{{ hindi_input }}</h1>
+</div>
+{{ wtf.quick_form(form) }}
+{% endblock %}
+-->
