@@ -40,3 +40,48 @@ class PastInput(db.Model):
     user_id=db.Column(db.Integer, db.ForeignKey('users.id'))
     def __repr__(self):
         return '<Input %r>' % self.pastInput
+    
+class User(db.Model):
+        __tablename__='users'
+        userId=db.Column(db.Integer,primary_key=True)
+        firstName=db.Column(db.String)
+        lastName=db.Column(db.String)
+        email=db.Column(db.String)
+        password=db.Column(db.String)
+        accountBalance=db.Column(db.Numeric(precision=15,scale=2),default=0)
+
+class UnionTable(db.Model):
+        __tablename__='union_table'
+        eventId=db.Column(db.Integer)
+        userId=db.Column(db.Integer)
+        isOrganizer=db.Column(db.Boolean)
+
+class Event(db.Model):
+     __tablename__='events'
+     #establish many events to one category
+     event_category_id=db.Column(db.Integer, db.ForeignKey('event_category.id'))
+
+     eventID=db.Column(db.Integer)
+     description=db.Column(db.Text)
+     flier_image_path=db.Column(db.String(255)) #it is not efficient to store images directly in database, we must store the path to the image instead
+     capacity=db.Column(db.Integer)
+     location=db.Column(db.String)
+     isPaidOnly=db.Column(db.Boolean)
+     startDate=db.Column(db.DateTime)
+     endDate=db.Column(db.DateTime)
+
+class EventCategories(db.Model):
+     __tablename__='event_categories'
+     id=db.Column(db.Integer, primary_key=True)
+     event_category=db.Column(db.String)
+    #establish many events to one category
+     events=db.relationship('Event',backref='category')
+'''
+One category has many events but one event can only have one category. 
+If you want events to have multiple categories, you can possibly have 
+an intermediary table to establish many to many relationship.
+'''
+
+
+
+
