@@ -2,4 +2,187 @@
 {% block title %}Home Page{% endblock %}
 {% block content %}
 <p>This will display upcoming events to users, saved</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+    <link rel="stylesheet" href="./styles.css">
+    <title>Events Cards </title>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Events</h2>
+        <div id="calendar">
+            <form action=method="post">
+                Date: <input type="date" name="" value="">
+            </form>
+
+        </div>
+        <div class="filter-option">
+            <input type="checkbox" id="entry-fee">
+            <label for="entry-fee">Events with Entry Fee</label>
+        </div>
+        <div class="filter-option">
+            <input type="checkbox" id="no-entry-fee">
+            <label for="no-entry-fee">Events without Entry Fee</label>
+        </div>
+        <div class="filter-option">
+            <input type="checkbox" id="created-by-me">
+            <label for="created-by-me">Events Created by Me</label>
+        </div>
+        <div class="filter-option">
+            <input type="checkbox" id="free-food-swag">
+            <label for="free-food-swag">Events with Free Food/Swag</label>
+        </div>
+        <button onclick="createEvent()">Create Your Own Event</button>
+    </div>
+    <!-- End of Sidebar -->
+
+    <!-- start of website contents -->
+    <div class="container">
+        <div class="item-container">
+            <div class="img-container">
+                <img src="./imagess/img1.jpg" alt="Event image">
+            </div>
+
+            <div class="body-container">
+                <div class="overlay"></div>
+
+                <div class="event-info">
+                    <p class="title">Bubbe's Book Club</p>
+                    <div class="separator"></div>
+                    <p class="info">Library South</p>
+                    <p class="price">Free</p>
+
+                    <div class="additional-info">
+                        <p class="info">
+                            <i class="fas fa-map-marker-alt"></i>
+                            100 Decatur St. SE, Atlanta, GA 30303
+                        </p>
+                        <p class="info">
+                            <i class="far fa-calendar-alt"></i>
+                            Sat, March 30, 10:00 AM EDT
+                        </p>
+
+                        <p class="info description">
+                            Welcome! Everyone has a unique perspective after reading a book, and we would love you
+                            to share yours with us! We meet one Sunday evening <span>more...</span>
+                        </p>
+                    </div>
+                </div>
+                <a herf="index.html"></a>
+                <button class="action">Book it</button>
+            </div>
+        </div>
+
+        <div class="item-container">
+            <div class="img-container">
+                <img src="./imagess/img2.jpg" alt="Event image">
+            </div>
+
+            <div class="body-container">
+                <div class="overlay"></div>
+
+                <div class="event-info">
+                    <p class="title">Art Competition</p>
+                    <div class="separator"></div>
+                    <p class="info">Student Center East</p>
+                    <p class="price">$10</p>
+
+                    <div class="additional-info">
+                        <p class="info">
+                            <i class="fas fa-map-marker-alt"></i>
+                            100 Decatur St. SE, Atlanta, GA 30303
+                        </p>
+                        <p class="info">
+                            <i class="far fa-calendar-alt"></i>
+                            Sat, March 30, 10:00 AM EDT
+                        </p>
+
+                        <p class="info description">
+                            Welcome! Everyone has a unique perspective after reading a book, and we would love you
+                            to share yours with us! We meet one Sunday evening <span>more...</span>
+                        </p>
+                    </div>
+                </div>
+                <button class="action">Book it</button>
+            </div>
+        </div>
+
+        <div class="item-container">
+            <div class="img-container">
+                <img src="./imagess/img3.jpg" alt="Event image">
+            </div>
+
+            <div class="body-container">
+                <div class="overlay"></div>
+
+                <div class="event-info">
+                    <p class="title">Resume Workshop</p>
+                    <div class="separator"></div>
+                    <p class="info">Library North</p>
+                    <p class="price">$12</p>
+
+                    <div class="additional-info">
+                        <p class="info">
+                            <i class="fas fa-map-marker-alt"></i>
+                            100 Decatur St. SE, Atlanta, GA 30303
+                        </p>
+                        <p class="info">
+                            <i class="far fa-calendar-alt"></i>
+                            Sat, March 30, 10:00 AM EDT
+                        </p>
+
+                        <p class="info description">
+                            Welcome! Everyone has a unique perspective after reading a book, and we would love you
+                            to share yours with us! We meet one Sunday evening <span>more...</span>
+                        </p>
+                    </div>
+                </div>
+                <button class="action">Book it</button>
+            </div>
+        </div>
+
+        <div class="item-container">
+            <div class="img-container">
+                <img src="./imagess/img4.jpg" alt="Event image">
+            </div>
+
+            <div class="body-container">
+                <div class="overlay"></div>
+
+                <div class="event-info">
+                    <p class="title">Tech Conference</p>
+                    <div class="separator"></div>
+                    <p class="info">200 Landall hall</p>
+                    <p class="price">Free</p>
+
+                    <div class="additional-info">
+                        <p class="info">
+                            <i class="fas fa-map-marker-alt"></i>
+                            100 Decatur St. SE, Atlanta, GA 30303
+                        </p>
+                        <p class="info">
+                            <i class="far fa-calendar-alt"></i>
+                            Sat, March 30, 10:00 AM EDT
+                        </p>
+
+                        <p class="info description">
+                            Welcome! Everyone has a unique perspective after reading a book, and we would love you
+                            to share yours with us! We meet one Sunday evening <span>more...</span>
+                        </p>
+                    </div>
+                </div>
+                <button class="action">Book it</button>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
+
 {%end block%}
