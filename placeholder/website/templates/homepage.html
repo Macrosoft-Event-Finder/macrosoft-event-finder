@@ -1,7 +1,6 @@
 {% extends "base.html" %} {% import "bootstrap/wtf.html" as wtf %}
 {% block title %}Home Page{% endblock %}
 {% block content %}
-<p>This will display upcoming events to users, saved</p>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,13 +8,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
-    <link rel="stylesheet" href="./script.css">
+    <link rel="stylesheet" href="placeholder/website/static/script.css">
     <title>Events Cards </title>
 </head>
 <body>
     <!-- Sidebar -->
     <div class="sidebar">
-        <h2>Events</h2>
+        <h2>Events</h2>{% block styles %}
+        {{ super() }}
+        <link rel="stylesheet" href="{{ url_for('static', filename='script.css') }}">
+        {% endblock %}
         <div id="calendar">
             <form action=method="post">
                 Date: <input type="date" name="" value="">
