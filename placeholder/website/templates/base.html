@@ -13,16 +13,16 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ url_for('main.readOnly') }}">Read Only</a>
-            <a class="navbar-brand" href="{{ url_for('main.readOnlyMode') }}">Read Only Mode</a>
-            <a class="navbar-brand" href="{{ url_for('main.login') }}">Log In</a>
+            <a class="navbar-brand" href="{{ url_for('main.homepage') }}">View Events</a>
+            <a class="navbar-brand" href="{{ url_for('main.create_event') }}">Post an Event</a>
+            
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 {%if current_user.is_authenticated%}
-                <li><a href="{{url_for('main.logout')}}">Log Out</a></li>
+                <li><a href="{{url_for('auth.logout')}}">Log Out</a></li>
                 {%else%}
-                <li><a href="{{url_for('main.login')}}">Log In</a></li>
+                <li><a href="{{url_for('auth.login')}}">Log In</a></li>
                 {%endif%}
             </ul>
         </div>
