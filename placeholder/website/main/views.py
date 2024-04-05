@@ -15,4 +15,6 @@ def homepage():
 @main.route('/create_event',methods=['GET','POST'])
 @login_required
 def create_event():
-    return render_template('create_event.html')
+    eventForm = EventForm()
+    return render_template('create_event.html', eventForm=eventForm)
+

@@ -13,7 +13,7 @@ event_user=db.Table('event_user',
 
 #the User table with login functionalities
 class User(UserMixin, db.Model):
-    __tablename__='users'
+    __tablename__='user'
     id=db.Column(db.Integer, primary_key=True)
     
     email=db.Column(db.String,unique=True)
@@ -42,9 +42,9 @@ def load_user(user_id):
 
 #event table 
 class Event(db.Model):
-     __tablename__='events'
+     __tablename__='event'
      #establish many events to one category
-     event_category_id=db.Column(db.Integer, db.ForeignKey('event_category.id'))
+     event_category_id=db.Column(db.Integer, db.ForeignKey('event_categories.id'))
      users=db.relationship('User',secondary=event_user,backref='events')
      id=db.Column(db.Integer, primary_key=True)
      description=db.Column(db.Text)

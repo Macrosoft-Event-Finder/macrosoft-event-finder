@@ -15,8 +15,7 @@ class RegistrationForm(FlaskForm):
 , message='Enter your name in regular format, first letter capital, the rest lowercase')])
     submit = SubmitField('Register')
 
-
-    def validate_email(self, field):
+    def validate_email_field(self, field):
         if User.query.filter_by(email=field.data).first():
             raise ValidationError('This email is already in use.')
 
