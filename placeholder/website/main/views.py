@@ -10,11 +10,9 @@ from flask_login import login_required
 @main.route('/', methods=['GET','POST'])
 #@login_required
 def homepage():
-
     return render_template('homepage.html')
 	  
 @main.route('/create_event',methods=['GET','POST'])
 @login_required
 def create_event():
     return render_template('create_event.html')
-
