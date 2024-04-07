@@ -1,5 +1,7 @@
 {% extends "base.html" %}{% import "bootstrap/wtf.html" as wtf %}
+
 {% block title %}Log In{% endblock %}
+
 {% block content %}
 <p>Hello, {% if username %}{{ username }}{% else %}Stranger{% endif %}!</p>
 {{ wtf.quick_form(loginForm) }}
@@ -19,5 +21,4 @@
 
     {% block page_content %}{% endblock %}
 </div>
-<!--Test-->
 {% endblock %}

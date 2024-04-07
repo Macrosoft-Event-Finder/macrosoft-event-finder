@@ -24,9 +24,21 @@
         <input type="checkbox" id="created-by-me">
         <label for="created-by-me">Events Created by Me</label>
     </div>
+    <br>
     <div class="filter-option">
-        <input type="checkbox" id="free-food-swag">
-        <label for="free-food-swag">Events with Free Food/Swag</label>
+        <label for="category">Category</label>
+        <select id="category">
+            <option value="option1">Any</option>
+            <option value="option2">Social</option>
+            <option value="option3">Educational</option>
+            <option value="option4">Fine Arts and Media</option>
+            <option value="option5">Fundraiser</option>
+            <option value="option6">Meeting</option>
+            <option value="option7">Service/Volunteer</option>
+            <option value="option8">Speaker/Lecturer</option>
+            <option value="option9">Recreational</option>
+            <option value="option10">Other</option>
+        </select>
     </div>
 
     <form action="{{ url_for('main.create_event') }}" method="GET">
