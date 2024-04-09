@@ -1,0 +1,37 @@
+{% extends "base.html" %} {% import "bootstrap/wtf.html" as wtf %}
+{% block title %}payment{% endblock %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Finder Payment</title>
+</head>
+<body>
+
+<h1>enter your payment information</h1>
+
+<form action="/process_payment" method="POST">
+    <label for="cardnumber">Card Number:</label><br>
+    <input type="text" id="cardnumber" name="cardnumber" required><br>
+
+    <label for="expdate">Expiration Date:</label><br>
+    <input type="text" id="expdate" name="expdate" placeholder="MM/YYYY" required><br>
+
+    <label for="securitycode">Security Code:</label><br>
+    <input type="text" id="securitycode" name="securitycode" required><br>
+
+    <label for="nameoncard">Name on Card:</label><br>
+    <input type="text" id="nameoncard" name="nameoncard" required><br>
+
+    <label for="zipcode">Zip Code:</label><br>
+    <input type="text" id="zipcode" name="zipcode" required><br>
+
+    <button type="submit" id="pay">Pay</button>
+    <button type="button" id="cancel">Cancel</button>
+</form>
+
+</body>
+</html>
+{%end block%}
