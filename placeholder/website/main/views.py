@@ -1,4 +1,6 @@
-from flask import Flask, Blueprint, render_template, request, flash, session, redirect, url_for
+from flask import Flask, Blueprint, app, render_template, request, flash, session, redirect, url_for, request
+from werkzeug.utils import secure_filename
+import os
 from datetime import datetime
 from langdetect import detect
 from . import main
@@ -17,6 +19,7 @@ def homepage():
 @login_required
 def create_event():
     eventForm = EventForm()
+
     if eventForm.validate_on_submit():
         event = Event(
             title = eventForm.title.data,
@@ -27,7 +30,7 @@ def create_event():
             end_date = eventForm.end_date.data,
             start_time = eventForm.start_time.data,
             end_time = eventForm.end_time.data,
-            flier_image_path= eventForm.flier_image_path.data,
+            #flier_image_path= eventForm.flier_image_path.data,
             paymentRequired = eventForm.paymentRequired.data,
             paymentAmount = eventForm.paymentAmount.data,
         )
