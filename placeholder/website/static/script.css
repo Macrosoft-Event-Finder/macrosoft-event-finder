@@ -8,7 +8,7 @@
 .sidebar {
     height: 100%;
     width: 200px;
-    top: 0;
+    top: 24px;
     left: 0;
     position: fixed;
     background-color: #f8f9fa;
@@ -73,7 +73,7 @@ body {
 
 .item-container {
     position: relative;
-    margin: 24px;
+    margin: 100px 24px 24px 24px;
     width: 320px;
     height: 570px;
     overflow: hidden;
@@ -197,4 +197,10 @@ body {
 .input-field {
     width: 50%;
     margin: 8px 0 8px 20px;
+}
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000; 
 }
