@@ -3,23 +3,53 @@
 {% block title %}Event Page{% endblock %}
 
 {% block content %}
-
-
-
 {% for event in events %}
 
-<h1>Event title: {{ events.title }}</h1>
 
+
+<div class="event_div">
+    <div class="eventimg_div">
+
+        <img src="./static/default_image.jpg" alt="Event image">
+    
+    </div>
+    <h1 class="event-title">{{ event.title }}</h1>
+    <h3>Location: {{ event.location }}</h3>
+    <h4>Category: {{ event.category }}</h4>
+    
+    <div>
+        <h3>Date:{% if event.start_date == event.end_date %}
+            {{ event.start_date }}
+        {% else %}
+            {{ event.start_date }} to {{ event.end_date }}
+        {% endif %}</h3>
+
+        <h4>Time: {{ event.start_time }} - {{ event.end_time }}</h4>
+    </div>
+
+
+    {% if event.paymentRequired == true %}
+        <h3>Cost: ${{ event.paymentAmount }}</h3>
+        {% else %}
+        <h3>Free Event</h3>
+    {% endif %}
+
+<p>Description: {{ event.description }} This is a test.This is a test.
+    This is a test.This is a test.This is a test.This is a test.This 
+    is a test.This is a test.This is a test.This is a test.This is a 
+    test.This is a test.This is a test.This is a test.This is a test.
+    This is a test.This is a test.This is a test.This is a test.This is 
+    a test.This is a test.This is a test.This is a test.This is a test.
+    This is a test.This is a test.This is a test.</p>
+
+<h4>Spots remaining: {{ event.capacity }}/{{ event.capacity }}</h4>
+
+<button class="rsvp_button">RSVP here</button>
+
+
+
+</div>
 {% endfor %}
-
-<h1>This is a test</h1>
-<h2>This is Test 2</h2>
-
-    
-<!--<img src="./static/default_image.jpg" alt="Event image">-->
-    
-
-
 {% endblock %}
 
 {% block styles %}

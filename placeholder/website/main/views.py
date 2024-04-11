@@ -17,12 +17,11 @@ def homepage():
 
 @main.route('/event_page',methods=['GET','POST'])
 def event_page():
-    eventForm = EventForm()
-
-    event = Event(
-        title = eventForm.title.data
-    )
-    return render_template('event_page.html', eventForm=eventForm)
+    events = Event.query.all()
+    
+    event = Event(  )
+    
+    return render_template('event_page.html', events=events)
 
 	  
 @main.route('/create_event',methods=['GET','POST'])
