@@ -13,7 +13,7 @@ event_user=db.Table('event_user',
 
 #the User table with login functionalities
 class User(UserMixin, db.Model):
-    __tablename__='users'
+    __tablename__='user'
     id=db.Column(db.Integer, primary_key=True)
     
     email=db.Column(db.String,unique=True)
@@ -42,18 +42,22 @@ def load_user(user_id):
 
 #event table 
 class Event(db.Model):
-     __tablename__='events'
+     __tablename__='event'
      #establish many events to one category
-     event_category_id=db.Column(db.Integer, db.ForeignKey('event_category.id'))
+     event_category_id=db.Column(db.Integer, db.ForeignKey('event_categories.id'))
      users=db.relationship('User',secondary=event_user,backref='events')
      id=db.Column(db.Integer, primary_key=True)
+     title=db.Column(db.String)
      description=db.Column(db.Text)
-     flier_image_path=db.Column(db.String(255)) #it is not efficient to store images directly in database, we must store the path to the image instead. We can also create a default value for the image
+     flier_image_path=db.Column(db.String(255), default='default_image.jpg') #it is not efficient to store images directly in database, we must store the path to the image instead. We can also create a default value for the image
      capacity=db.Column(db.Integer)
      location=db.Column(db.String)
-     isPaidOnly=db.Column(db.Boolean, default=False)
-     startDate=db.Column(db.DateTime)
-     endDate=db.Column(db.DateTime)
+     paymentRequired=db.Column(db.Boolean, default=False)
+     paymentAmount=db.Column(db.Integer, default=0)
+     start_date=db.Column(db.Date)
+     start_time=db.Column(db.Time)
+     end_date=db.Column(db.Date)
+     end_time=db.Column(db.Time)
 
 class EventCategories(db.Model):
      __tablename__='event_categories'
@@ -61,7 +65,6 @@ class EventCategories(db.Model):
      event_category=db.Column(db.String)
     #establish many events to one category
      events=db.relationship('Event',backref='category')
-
 
 class EventOrganizer(db.Model):
      __tablename__='event_organizers'

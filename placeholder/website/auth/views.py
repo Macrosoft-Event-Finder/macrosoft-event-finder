@@ -14,7 +14,7 @@ def login():
             login_user(user, loginForm.remember_me.data)
             next = request.args.get('next')
             if next is None or not next.startswith('/'):
-                next = url_for('auth.login')
+                next = url_for('main.homepage')
             return redirect(next)
         flash('Invalid username or password.')
     return render_template('auth/login.html', loginForm=loginForm, email=session.get('email'), password=session.get('password'))
