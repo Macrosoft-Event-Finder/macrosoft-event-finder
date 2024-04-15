@@ -15,7 +15,7 @@ def homepage():
     events = Event.query.order_by(Event.start_date).all()
     return render_template('homepage.html', events=events)
 
-@main.route('/event_page',methods=['GET','POST'])
+@main.route('/event_page', methods=['GET','POST'])
 def event_page():
     eventForm = EventForm()
 
@@ -24,13 +24,21 @@ def event_page():
     )
     return render_template('event_page.html', eventForm=eventForm)
 
-	  
-@main.route('/create_event',methods=['GET','POST'])
+@main.route('/create_event', methods=['GET','POST'])
 @login_required
 def create_event():
     eventForm = EventForm()
 
+    
     if eventForm.validate_on_submit():
+        category = EventCategories(
+            event_category = eventForm.event_category.data,
+        )
+        db.session.add(category)
+        db.session.commit()
+
+        if eventForm.paymentAmount.data is None:
+            eventForm.paymentAmount.data = 0
         event = Event(
             title = eventForm.title.data,
             description = eventForm.description.data,
@@ -40,20 +48,13 @@ def create_event():
             end_date = eventForm.end_date.data,
             start_time = eventForm.start_time.data,
             end_time = eventForm.end_time.data,
-            #flier_image_path= eventForm.flier_image_path.data,
+            flier_image_path = 'img1.jpg',
             paymentRequired = eventForm.paymentRequired.data,
             paymentAmount = eventForm.paymentAmount.data,
         )
         db.session.add(event)
         db.session.commit()
 
-        category = EventCategories(
-            event_category = eventForm.event_category.data,
-        )
-        db.session.add(category)
-        db.session.commit()
-
         flash('Event posted.')
         return redirect(url_for('main.homepage'))
     return render_template('create_event.html', eventForm=eventForm)
-

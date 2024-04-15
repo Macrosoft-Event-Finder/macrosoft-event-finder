@@ -2,7 +2,6 @@
 {% import "bootstrap/wtf.html" as wtf %}
 {% block title %}Home Page{% endblock %}
 {% block content %}
-<p>This will display upcoming events to users, saved</p>
 <!-- Sidebar -->
 <div class="sidebar">
     <h2>Events</h2>
@@ -52,45 +51,43 @@
 <!-- start of website contents -->
 <div class="container">
 
-    <!--default
     {% for event in events %}
         <div class="item-container">
             <div class="img-container">
             <img src="./static/default_image.jpg" alt="Event image">
             </div>
-        </div>
 
-        <div class="body-container">
-            <div class="overlay"></div>
-        
-            <div class="event-info">
-                <p class="title">{{ event.title }}</p>
-                <div class="separator"></div>
-                <p class="info">{{ event.category }}</p>
-                <p class="price">{{ event.paymentAmount }}</p>
-        
-                <div class="additional-info">
-                    <p class="info">
-                        <i class="fas fa-map-marker-alt"></i>
-                        {{ event.location }}
-                    </p>
-                    <p class="info">
-                        <i class="far fa-calendar-alt"></i>
-                        {{ event.start_date }}
-                    </p>
-                    <p class="info description">
-                        {{ event.description }}<span>more...</span>
-                    </p>
-                </div>
-            </div>
-            <a href="index.html"></a>
+            <div class="body-container">
+                <div class="overlay"></div>
             
-            <form action="{{ url_for('main.event_page') }}" method="GET">
-                <button class="action">Book it</button>
-            </form>
+                <div class="event-info">
+                    <p class="title">{{ event.title }}</p>
+                    <div class="separator"></div>
+                    <p class="info">{{ event.category.event_category }}</p>
+                    <p class="price">${{ event.paymentAmount }}</p>
+            
+                    <div class="additional-info">
+                        <p class="info">
+                            <i class="fas fa-map-marker-alt"></i>
+                            {{ event.location }}
+                        </p>
+                        <p class="info">
+                            <i class="far fa-calendar-alt"></i>
+                            {{ event.start_date }}
+                        </p>
+                        <p class="info description">
+                            {{ event.description }}<span>more...</span>
+                        </p>
+                    </div>
+                </div>
+                <a href="index.html"></a>
+                
+                <form action="{{ url_for('main.event_page') }}" method="GET">
+                    <button class="action">Book it</button>
+                </form>
+            </div>
         </div>
     {% endfor %}    
-     default -->
     <div class="item-container">
         <div class="img-container">
             <img src="./static/img1.jpg" alt="Event image">

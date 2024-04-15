@@ -2,53 +2,7 @@
 {% block title %}Home Page{% endblock %}
 
 {% block content %}
-
 {{ wtf.quick_form(eventForm) }}
-<!--
-  <h1>Create Event</h1>
-  
-  <form action="/submit_event" method="post" enctype="multipart/form-data" >
-    <label for="eventName">Event Name:</label><br>
-    <input type="text" id="eventName" name="eventName" required><br><br>
-    
-    <label for="description">Description:</label><br>
-    <textarea id="description" name="description" rows="4" cols="50" required></textarea><br><br>
-    
-    <label for="date">Date:</label><br>
-    <input type="date" id="date" name="date" required><br><br>
-    
-    <label for="visual">Visual (optional):</label><br>
-    <input type="file" id="visual" name="visual"><br><br>
-  -->
-    <!--categories --> <!--
-    <input type="checkbox" id="social" name="categories[]" value="social">
-    <label for="social">Social</label><br>
-    
-    <input type="checkbox" id="educational" name="categories[]" value="educational">
-    <label for="educational">Educational</label><br>
-    
-    <input type="checkbox" id="food" name="categories[]" value="food">
-    <label for="food">Food</label><br>
-
-    <input type="checkbox" id="fine arts/media" name="categories[]" value="fine arts/media">
-    <label for="fine arts/media">fine arts/media</label><br>
-
-    <input type="checkbox" id="meeting" name="categories[]" value="meeting">
-    <label for="fine arts/media">fine arts/media</label><br>
-
-    <input type="checkbox" id="service/volunteer" name="categories[]" value="service/volunteer">
-    <label for="service/volunteer">service/volunteer</label><br>
-
-    <input type="checkbox" id="other" name="categories[]" value="other">
-    <label for="other">other</label><br>
-   
-    </select><br><br>
-    
-    <input type="submit" value="Post Event">
-  </form>
--->
-</body>
-
 {% endblock %}
 
 {% block styles %}
