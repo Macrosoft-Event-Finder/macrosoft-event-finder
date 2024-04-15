@@ -204,3 +204,30 @@ body {
     width: 100%;
     z-index: 1000; 
 }
+/* Start of Event Page */
+.eventimg_div img{
+   max-width: 100%;
+   height: auto;
+   max-height: 500px;
+   display: block;
+   border: solid;
+   border-color: black;
+}
+.event_div {
+    position: absolute; 
+    left: 40px;
+    top: 80px;
+    color: #333;
+}
+.event-title {
+    color: #18537a;
+    border-bottom: solid;
+    border-color: #18537a;
+    display: inline-block;
+    
+}
+.rsvp_button {
+    color: white;
+    background-color: #18537a;
+    padding: 10px;
+}
