@@ -21,11 +21,10 @@ def homepage():
 
 @main.route('/event_page', methods=['GET','POST'])
 def event_page():
-    events = Event.query.all()
-    
-    event = Event(  )
-    
-    return render_template('event_page.html', events=events)
+    event_id = request.args.get('event_id')
+    event = Event.query.get(event_id)
+        
+    return render_template('event_page.html', event=event)
 
 @main.route('/create_event', methods=['GET','POST'])
 @login_required

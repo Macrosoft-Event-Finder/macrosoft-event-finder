@@ -3,9 +3,6 @@
 {% block title %}Event Page{% endblock %}
 
 {% block content %}
-{% for event in events %}
-
-
 
 <div class="event_div">
     <div class="eventimg_div">
@@ -34,22 +31,13 @@
         <h3>Free Event</h3>
     {% endif %}
 
-<p>Description: {{ event.description }} This is a test.This is a test.
-    This is a test.This is a test.This is a test.This is a test.This 
-    is a test.This is a test.This is a test.This is a test.This is a 
-    test.This is a test.This is a test.This is a test.This is a test.
-    This is a test.This is a test.This is a test.This is a test.This is 
-    a test.This is a test.This is a test.This is a test.This is a test.
-    This is a test.This is a test.This is a test.</p>
+<p>Description: {{ event.description }}</p>
 
 <h4>Spots remaining: {{ event.capacity }}/{{ event.capacity }}</h4>
 
-<button class="rsvp_button" id="submitBtn">RSVP here</button>
-
-
+<button class="rsvp_button" id="submitBtn">RSVP Here</button>
 
 </div>
-{% endfor %}
 {% endblock %}
 
 {% block styles %}
