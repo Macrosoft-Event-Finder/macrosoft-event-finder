@@ -61,8 +61,6 @@ def create_event():
         flash('Event posted.')
         return redirect(url_for('main.homepage'))
     return render_template('create_event.html', eventForm=eventForm)
-<<<<<<< HEAD
-=======
 
 @main.route("/config")
 def get_publishable_key():
@@ -104,4 +102,3 @@ def cancelled():
 
 if __name__ == '__main__':
     main.run()
->>>>>>> 53dea8a0939ac24d0695a770191801be8fb629cc
