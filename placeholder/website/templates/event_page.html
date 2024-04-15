@@ -44,9 +44,9 @@
 
 <h4>Spots remaining: {{ event.capacity }}/{{ event.capacity }}</h4>
 
-<button class="rsvp_button" id="submitBtn">RSVP here</button>
-
-
+<form action="{{ url_for('main.confirm_payment') }}" method="GET">
+<button class="rsvp_button">RSVP here</button>
+</form>
 
 </div>
 {% endfor %}

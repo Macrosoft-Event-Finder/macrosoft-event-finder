@@ -62,6 +62,10 @@ def create_event():
         return redirect(url_for('main.homepage'))
     return render_template('create_event.html', eventForm=eventForm)
 
+@main.route("/confirm_payment")
+def confirm_payment():
+    return render_template("confirm_payment.html")
+
 @main.route("/config")
 def get_publishable_key():
     stripe_config = {"publicKey": "pk_test_51P4ASURrWMk3kdo04r3ahTD308dHHV5EeELFbVOZ6ihR9t3iCBIe7o98vlvzBS7MQVJqklW1xsjxT7VUuT98T1N500aHs2qBfv"}
