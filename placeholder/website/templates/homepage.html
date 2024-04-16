@@ -64,7 +64,10 @@
                     <p class="title">{{ event.title }}</p>
                     <div class="separator"></div>
                     <p class="info">{{ event.category.event_category }}</p>
-                    <p class="price">${{ event.paymentAmount }}</p>
+                    <p class="price">
+                        {% if event.paymentAmount == 0 %}Free
+                        {% else %}${{ event.paymentAmount }}
+                        {% endif %}</p>
             
                     <div class="additional-info">
                         <p class="info">
@@ -84,7 +87,7 @@
                 
                 <form action="{{ url_for('main.event_page') }}" method="GET">
                     <input type="hidden" name="event_id" value="{{ event.id }}">
-                    <button class="action">Book it</button>
+                    <button class="action">View Event</button>
                 </form>
             </div>
         </div>

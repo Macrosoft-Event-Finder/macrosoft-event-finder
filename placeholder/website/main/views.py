@@ -38,9 +38,10 @@ def create_event():
         )
         db.session.add(category)
         db.session.commit()
-
+        
         if eventForm.paymentAmount.data is None:
             eventForm.paymentAmount.data = 0
+        
         event = Event(
             title = eventForm.title.data,
             description = eventForm.description.data,
@@ -50,7 +51,7 @@ def create_event():
             end_date = eventForm.end_date.data,
             start_time = eventForm.start_time.data,
             end_time = eventForm.end_time.data,
-            flier_image_path = 'img1.jpg',
+            # flier_image_path = eventForm.flier_image_path.data,
             paymentRequired = eventForm.paymentRequired.data,
             paymentAmount = eventForm.paymentAmount.data,
         )
@@ -97,11 +98,11 @@ def create_checkout_session():
 
 @main.route("/success")
 def success():
-    return render_template("success.html")
+    return render_template("payment/success.html")
 
 @main.route("/cancelled")
 def cancelled():
-    return render_template("cancelled.html")
+    return render_template("payment/cancelled.html")
 
 if __name__ == '__main__':
     main.run()
