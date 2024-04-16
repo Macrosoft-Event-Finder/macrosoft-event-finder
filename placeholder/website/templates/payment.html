@@ -1,13 +1,7 @@
 {% extends "base.html" %} {% import "bootstrap/wtf.html" as wtf %}
 {% block title %}payment{% endblock %}
 {% block content %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event Finder Payment</title>
-</head>
+{% block title %}Event Finder Payment {% endblock %}
 <body>
 
 <h1>enter your payment information</h1>
@@ -34,4 +28,4 @@
 
 </body>
 </html>
-{%end block%}
+{% endblock %}

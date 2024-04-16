@@ -2,7 +2,6 @@ from flask import Flask, Blueprint, app, render_template, request, flash, sessio
 from werkzeug.utils import secure_filename
 import os
 from datetime import datetime
-from langdetect import detect
 from . import main
 from .forms import EventForm
 from .. import db
@@ -13,27 +12,68 @@ import stripe
 # secret key for testing
 stripe.api_key = 'sk_test_51P4ASURrWMk3kdo0BdbeZPRHlrYf4zoV2uCfURSXZZ84Yjk5ljYqDoB5sWYRhHescaAoVYLT9kDY3ODkRMYHAzqV009qCEuOyz'
 
-@main.route('/', methods=['GET','POST'])
-#@login_required
-def homepage():
+@main.route('/') #methods=['GET','POST'])
+def homepage():  
+    date_string = request.args.get('event-date')
+    if date_string:
+        date = datetime.strptime(date_string, '%Y-%m-%d').date()
+    else:
+        date = None 
+    print("A date was entered: %s and was converted to %s"%(date, date_string))
+    entry_fee = request.args.get('entry-fee') == 'on'
+    no_entry_fee = request.args.get('no-entry-fee') == 'on'
+    print("The values of entry fee is %s and no entry fee is %s"%(entry_fee,no_entry_fee))
+    created_by_me = request.args.get('created-by-me') == 'on'
+    category = request.args.get('category')
+
     events = Event.query.order_by(Event.start_date).all()
-    return render_template('homepage.html', events=events)
+    if date:
+        events=Event.query.filter_by(start_date=date).all()
+    if entry_fee:
+        events=Event.query.filter_by(paymentRequired=True).all()
+    if no_entry_fee:
+        events=Event.query.filter_by(paymentRequired=False).all()
+        
+    #if created_by_me and current_user.is_authenticated:
+       # query = query.filter(Event.creator_id == current_user.id)
+        
+    
 
-@main.route('/event_page',methods=['GET','POST'])
+    
+    return (render_template('homepage.html', date=date, events=events))
+    '''
+    events=Event.query.all()
+    for event in events:
+        print("The event has id: %s the event is called: %s The event has a category: %s The event's payment required value is %s The event's start date is: %s" 
+              
+              %(event.id, event.title, event.event_category_id, event.paymentRequired, event.start_date))
+    print('These are the event categories')
+    categories=EventCategories.query.all()
+    for category in categories:
+        print("The category is %s, the category id is: %s"% (category.event_category, category.id))
+    '''
+    
+
+
+
+@main.route('/event_page', methods=['GET','POST'])
 def event_page():
-    events = Event.query.all()
-    
-    event = Event(  )
-    
-    return render_template('event_page.html', events=events)
 
-	  
-@main.route('/create_event',methods=['GET','POST'])
+    return render_template('event_page.html')
+
+@main.route('/create_event', methods=['GET','POST'])
 @login_required
 def create_event():
-    eventForm = EventForm()
-
+    eventForm = EventForm()   
     if eventForm.validate_on_submit():
+        category = EventCategories(
+            event_category = eventForm.event_category.data,
+        )
+        db.session.add(category)
+        db.session.commit()
+
+        if eventForm.paymentAmount.data is None:
+            eventForm.paymentAmount.data = 0
         event = Event(
             title = eventForm.title.data,
             description = eventForm.description.data,
@@ -43,26 +83,20 @@ def create_event():
             end_date = eventForm.end_date.data,
             start_time = eventForm.start_time.data,
             end_time = eventForm.end_time.data,
-            #flier_image_path= eventForm.flier_image_path.data,
+            flier_image_path = 'img1.jpg',
             paymentRequired = eventForm.paymentRequired.data,
             paymentAmount = eventForm.paymentAmount.data,
         )
         db.session.add(event)
         db.session.commit()
 
-        category = EventCategories(
-            event_category = eventForm.event_category.data,
-        )
-        db.session.add(category)
-        db.session.commit()
-
         flash('Event posted.')
         return redirect(url_for('main.homepage'))
     return render_template('create_event.html', eventForm=eventForm)
 
-@main.route("/index")
-def index():
-    return render_template("index.html")
+@main.route("/confirm_payment")
+def confirm_payment():
+    return render_template("confirm_payment.html")
 
 @main.route("/config")
 def get_publishable_key():

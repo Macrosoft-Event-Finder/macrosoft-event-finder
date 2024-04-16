@@ -67,12 +67,12 @@ class EventCategories(db.Model):
      events=db.relationship('Event',backref='category')
 
 class EventOrganizer(db.Model):
-     __tablename__='event_organizers'
-     id=db.Column(db.Integer,primary_key=True)
-     user_id=db.Column(db.Integer, db.ForeignKey('user.id'))
-     event_id=db.Column(db.Integer,db.ForeignKey('event.id'))
-     is_organizer=db.Column(db.Boolean,default=False)
-     
+    __tablename__='event_organizers'
+    id=db.Column(db.Integer,primary_key=True)
+    user_id=db.Column(db.Integer, db.ForeignKey('user.id'))
+    event_id=db.Column(db.Integer,db.ForeignKey('event.id'))
+    is_organizer=db.Column(db.Boolean,default=False)
+    
 '''
 One category has many events but one event can only have one category. 
 If you want events to have multiple categories, you can possibly have 

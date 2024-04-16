@@ -3,7 +3,7 @@
 {% block title %}Log In{% endblock %}
 
 {% block content %}
-<p>Hello, {% if username %}{{ username }}{% else %}Stranger{% endif %}!</p>
+
 {{ wtf.quick_form(loginForm) }}
 <p>
     New user?
