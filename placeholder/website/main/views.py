@@ -27,53 +27,23 @@ def homepage():
     category = request.args.get('category')
 
     events = Event.query.order_by(Event.start_date).all()
-    if date:
-        events=Event.query.filter_by(start_date=date).all()
-    if entry_fee:
-        events=Event.query.filter_by(paymentRequired=True).all()
-    if no_entry_fee:
-        events=Event.query.filter_by(paymentRequired=False).all()
-        
-    #if created_by_me and current_user.is_authenticated:
-       # query = query.filter(Event.creator_id == current_user.id)
-        
-    
+    return render_template('homepage.html', events=events)
 
-    
-    return (render_template('homepage.html', date=date, events=events))
-    '''
-    events=Event.query.all()
-    for event in events:
-        print("The event has id: %s the event is called: %s The event has a category: %s The event's payment required value is %s The event's start date is: %s" 
-              
-              %(event.id, event.title, event.event_category_id, event.paymentRequired, event.start_date))
-    print('These are the event categories')
-    categories=EventCategories.query.all()
-    for category in categories:
-        print("The category is %s, the category id is: %s"% (category.event_category, category.id))
-    '''
-    
-
-
-
-@main.route('/event_page', methods=['GET','POST'])
+@main.route('/event_page',methods=['GET','POST'])
 def event_page():
+    events = Event.query.all()
+    
+    event = Event(  )
+    
+    return render_template('event_page.html', events=events)
 
-    return render_template('event_page.html')
-
-@main.route('/create_event', methods=['GET','POST'])
+	  
+@main.route('/create_event',methods=['GET','POST'])
 @login_required
 def create_event():
-    eventForm = EventForm()   
-    if eventForm.validate_on_submit():
-        category = EventCategories(
-            event_category = eventForm.event_category.data,
-        )
-        db.session.add(category)
-        db.session.commit()
+    eventForm = EventForm()
 
-        if eventForm.paymentAmount.data is None:
-            eventForm.paymentAmount.data = 0
+    if eventForm.validate_on_submit():
         event = Event(
             title = eventForm.title.data,
             description = eventForm.description.data,
@@ -83,7 +53,7 @@ def create_event():
             end_date = eventForm.end_date.data,
             start_time = eventForm.start_time.data,
             end_time = eventForm.end_time.data,
-            flier_image_path = 'img1.jpg',
+            #flier_image_path= eventForm.flier_image_path.data,
             paymentRequired = eventForm.paymentRequired.data,
             paymentAmount = eventForm.paymentAmount.data,
         )
@@ -130,11 +100,11 @@ def create_checkout_session():
 
 @main.route("/success")
 def success():
-    return render_template("success.html")
+    return render_template("payment/success.html")
 
 @main.route("/cancelled")
 def cancelled():
-    return render_template("cancelled.html")
+    return render_template("payment/cancelled.html")
 
 if __name__ == '__main__':
     main.run()

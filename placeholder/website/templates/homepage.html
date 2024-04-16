@@ -2,7 +2,10 @@
 {% import "bootstrap/wtf.html" as wtf %}
 {% block title %}Home Page{% endblock %}
 {% block content %}
+<<<<<<< HEAD
 
+=======
+>>>>>>> fa7a6187a844ae814ae05ffea502ee0773fc85d8
 <!-- Sidebar -->
 <div class="sidebar">
     <h2>Events</h2>
@@ -57,7 +60,11 @@
 
 <!-- start of website contents -->
 <div class="container">
+<<<<<<< HEAD
 <!-- Renders all the events created with database -->
+=======
+
+>>>>>>> fa7a6187a844ae814ae05ffea502ee0773fc85d8
     {% for event in events %}
         <div class="item-container">
             <div class="img-container">
@@ -71,7 +78,14 @@
                     <p class="title">{{ event.title }}</p>
                     <div class="separator"></div>
                     <p class="info">{{ event.category.event_category }}</p>
+<<<<<<< HEAD
                     <p class="price">${{ event.paymentAmount }}</p>
+=======
+                    <p class="price">
+                        {% if event.paymentAmount == 0 %}Free
+                        {% else %}${{ event.paymentAmount }}
+                        {% endif %}</p>
+>>>>>>> fa7a6187a844ae814ae05ffea502ee0773fc85d8
             
                     <div class="additional-info">
                         <p class="info">
@@ -89,6 +103,7 @@
                 </div>
                 <a href="index.html"></a>
                 
+<<<<<<< HEAD
                 <form action="{{ url_for('main.homepage') }}" method="GET">
                     <button class="action">Book it</button>
                 </form>
@@ -96,6 +111,15 @@
         </div>
     {% endfor %}   
    <!-- placeholder events
+=======
+                <form action="{{ url_for('main.event_page') }}" method="GET">
+                    <input type="hidden" name="event_id" value="{{ event.id }}">
+                    <button class="action">View Event</button>
+                </form>
+            </div>
+        </div>
+    {% endfor %}    
+>>>>>>> fa7a6187a844ae814ae05ffea502ee0773fc85d8
     <div class="item-container">
         <div class="img-container">
             <img src="./static/img1.jpg" alt="Event image">
