@@ -51,7 +51,6 @@ def event_page():
     
     return render_template('event_page.html', events=events)
 
-	  
 @main.route('/create_event',methods=['GET','POST'])
 @login_required
 def create_event():
@@ -60,6 +59,7 @@ def create_event():
     if eventForm.validate_on_submit():
         event = Event(
             title = eventForm.title.data,
+            event_category_id=eventForm.event_category.data,
             description = eventForm.description.data,
             capacity = eventForm.capacity.data,
             location = eventForm.location.data,
