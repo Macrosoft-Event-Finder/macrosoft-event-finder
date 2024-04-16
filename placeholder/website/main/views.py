@@ -12,7 +12,7 @@ import stripe
 # secret key for testing
 stripe.api_key = 'sk_test_51P4ASURrWMk3kdo0BdbeZPRHlrYf4zoV2uCfURSXZZ84Yjk5ljYqDoB5sWYRhHescaAoVYLT9kDY3ODkRMYHAzqV009qCEuOyz'
 
-@main.route('/') #methods=['GET','POST'])
+@main.route('/', methods=['GET','POST'])
 def homepage():  
     date_string = request.args.get('event-date')
     if date_string:
@@ -22,20 +22,19 @@ def homepage():
     print("A date was entered: %s and was converted to %s"%(date, date_string))
     entry_fee = request.args.get('entry-fee') == 'on'
     no_entry_fee = request.args.get('no-entry-fee') == 'on'
-    print("The values of entry fee is %s and no entry fee is %s"%(entry_fee,no_entry_fee))
+    #print("The values of entry fee is %s and no entry fee is %s"%(entry_fee,no_entry_fee))
     created_by_me = request.args.get('created-by-me') == 'on'
     category = request.args.get('category')
 
     events = Event.query.order_by(Event.start_date).all()
     return render_template('homepage.html', events=events)
 
-@main.route('/event_page',methods=['GET','POST'])
+@main.route('/event_page', methods=['GET','POST'])
 def event_page():
-    events = Event.query.all()
-    
-    event = Event(  )
-    
-    return render_template('event_page.html', events=events)
+    event_id = request.args.get('event_id')
+    event = Event.query.get(event_id)
+        
+    return render_template('event_page.html', event=event)
 
 @main.route('/create_event',methods=['GET','POST'])
 @login_required

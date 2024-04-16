@@ -17,7 +17,7 @@ class EventForm(FlaskForm):
     end_time = TimeField('Event end time (hour:minute am/pm)', validators=[DataRequired()])
 
     flier_image_path=FileField('Upload flier for event', validators=[FileAllowed(['jpg', 'jpeg', 'png'])])
-    
+
     paymentRequired = BooleanField('Is the event payment required?', validators=[validators.optional()])
     paymentAmount = IntegerField('If payment required, enter payment amount', validators=[validators.Optional(), validators.NumberRange(min=0)])
     event_category=SelectField('Select the category that best fits your event',validators=[DataRequired()],

@@ -5,9 +5,7 @@
 {% block content %}
 <div class="event_div">
     <div class="eventimg_div">
-
         <img src="./static/default_image.jpg" alt="Event image">
-    
     </div>
     <h1 class="event-title">{{ event.title }}</h1>
     <h3>Location: {{ event.location }}</h3>
@@ -22,7 +20,6 @@
 
         <h4>Time: {{ event.start_time }} - {{ event.end_time }}</h4>
     </div>
-
 
     {% if event.paymentRequired == true %}
         <h3>Cost: ${{ event.paymentAmount }}</h3>

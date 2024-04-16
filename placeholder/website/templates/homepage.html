@@ -91,7 +91,8 @@
                 </div>
                 <a href="index.html"></a>
                 
-                <form action="{{ url_for('main.homepage') }}" method="GET">
+                <form action="{{ url_for('main.event_page') }}" method="GET">
+                    <input type="hidden" name="event_id" value="{{ event.id }}">
                     <button class="action">View Event</button>
                 </form>
             </div>
