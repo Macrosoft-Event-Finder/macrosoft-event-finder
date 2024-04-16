@@ -24,10 +24,24 @@ def homepage():
     no_entry_fee = request.args.get('no-entry-fee') == 'on'
     #print("The values of entry fee is %s and no entry fee is %s"%(entry_fee,no_entry_fee))
     created_by_me = request.args.get('created-by-me') == 'on'
-    category = request.args.get('category')
+    category_str = request.args.get('category', '0')
+
+# Convert the category to an integer
+    category = int(category_str)
+
 
     events = Event.query.order_by(Event.start_date).all()
-    return render_template('homepage.html', events=events)
+    if date:
+        events=Event.query.filter_by(start_date=date).all()
+    if entry_fee:
+        events=Event.query.filter_by(paymentRequired=True).all()
+    if no_entry_fee:
+        events=Event.query.filter_by(paymentRequired=False).all()
+    if(category>0):
+        events=Event.query.filter_by(event_category_id=category)
+    #if created_by_me and current_user.is_authenticated:
+       # query = query.filter(Event.creator_id == current_user.id)
+    return render_template('homepage.html', date=date, events=events)
 
 @main.route('/event_page', methods=['GET','POST'])
 def event_page():
@@ -44,6 +58,7 @@ def create_event():
     if eventForm.validate_on_submit():
         event = Event(
             title = eventForm.title.data,
+            event_category_id=eventForm.event_category.data,
             description = eventForm.description.data,
             capacity = eventForm.capacity.data,
             location = eventForm.location.data,
