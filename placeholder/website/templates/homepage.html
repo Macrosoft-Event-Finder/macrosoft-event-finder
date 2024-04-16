@@ -2,10 +2,6 @@
 {% import "bootstrap/wtf.html" as wtf %}
 {% block title %}Home Page{% endblock %}
 {% block content %}
-<<<<<<< HEAD
-
-=======
->>>>>>> fa7a6187a844ae814ae05ffea502ee0773fc85d8
 <!-- Sidebar -->
 <div class="sidebar">
     <h2>Events</h2>
@@ -60,11 +56,7 @@
 
 <!-- start of website contents -->
 <div class="container">
-<<<<<<< HEAD
 <!-- Renders all the events created with database -->
-=======
-
->>>>>>> fa7a6187a844ae814ae05ffea502ee0773fc85d8
     {% for event in events %}
         <div class="item-container">
             <div class="img-container">
@@ -100,7 +92,7 @@
                 <a href="index.html"></a>
                 
                 <form action="{{ url_for('main.homepage') }}" method="GET">
-                    <button class="action">Book it</button>
+                    <button class="action">View Event</button>
                 </form>
             </div>
         </div>

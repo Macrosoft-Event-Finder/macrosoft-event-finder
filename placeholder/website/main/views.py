@@ -37,7 +37,6 @@ def event_page():
     
     return render_template('event_page.html', events=events)
 
-	  
 @main.route('/create_event',methods=['GET','POST'])
 @login_required
 def create_event():
