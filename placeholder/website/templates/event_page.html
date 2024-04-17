@@ -31,9 +31,15 @@
 
 <h4>Spots remaining: {{ event.capacity }}/{{ event.capacity }}</h4>
 
-<form action="{{ url_for('main.confirm_payment') }}" method="GET">
-<button class="rsvp_button">RSVP here</button>
-</form>
+{% if event.paymentAmount > 0 %}
+    <form action="{{ url_for('main.confirm_payment') }}" method="GET">
+    <button class="rsvp_button">RSVP here</button>
+    </form>
+{% else %}
+    <form action="{{ url_for('main.success') }}" method="GET">
+    <button class="rsvp_button">RSVP here</button>
+    </form>
+{% endif %}
 
 </div>
 {% endblock %}
