@@ -4,6 +4,9 @@
   <section class="section">
     <div class="container">
       <p>Your payment was cancelled.</p>
+      <form action="{{ url_for('main.homepage') }}" method="GET">
+        <button>Click here to return to the homepage.</button>
+      </form>
     </div>
   </section>
 {% endblock %}
