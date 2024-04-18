@@ -5,7 +5,19 @@
 {% block content %}
 <div class="event_div">
     <div class="eventimg_div">
+        {%if event.event_category_id==8 %}
+        <img src=".\static\frogArt.jpeg" alt="Event image">
+        {%elif event.event_category_id==9 %}
+        <img src=".\static\frogFundraiser.jpg" alt="Event image">
+        {%elif event.event_category_id==1 %}
+        <img src=".\static\frogMeeting.jpg" alt="Event image">
+        {%elif event.event_category_id==6 %}
+        <img src=".\static\frogSocial.jpg" alt="Event image">
+        {%elif event.event_category_id==2 %}
+        <img src=".\static\frogLecturer.jpg" alt="Event image">
+        {%else%}
         <img src="./static/default_image.jpg" alt="Event image">
+        {%endif%}
     </div>
     <h1 class="event-title">{{ event.title }}</h1>
     <h3>Location: {{ event.location }}</h3>
@@ -47,5 +59,4 @@
 {% block styles %}
 {{ super() }}
 <link rel="stylesheet" href="{{ url_for('static', filename='script.css') }}">
-
 {% endblock %}

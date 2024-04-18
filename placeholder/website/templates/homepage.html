@@ -47,7 +47,12 @@
    
     <button type="submit">Filter Events</button>
     </form>
-    
+    <br>
+    <form action="{{ url_for('main.homepage') }}" method="GET">
+        <button type="submit">Clear Filters</button>
+    </form>
+    <br>
+
     <form action="{{ url_for('main.create_event') }}" method="GET">
         <button type="submit">Create Your Own Event</button>
     </form>
@@ -61,15 +66,15 @@
         <div class="item-container">
             <div class="img-container">
             {%if event.event_category_id==8 %}
-            <img src=".\static\FrogArt.jpeg" alt="Event image">
+            <img src=".\static\frogArt.jpeg" alt="Event image">
             {%elif event.event_category_id==9 %}
             <img src=".\static\frogFundraiser.jpg" alt="Event image">
             {%elif event.event_category_id==1 %}
             <img src=".\static\frogMeeting.jpg" alt="Event image">
-            {%elif event.event_category_id==2 %}
-            <img src=".\static\socialFrogs.jpg"  alt="Event image">
             {%elif event.event_category_id==6 %}
-            <img src=".\socialFrogs.jpg" alt="Event image">
+            <img src=".\static\frogSocial.jpg"  alt="Event image">
+            {%elif event.event_category_id==2 %}
+            <img src=".\static\frogLecturer.jpg" alt="Event image">
             {%else%}
             <img src="./static/default_image.jpg" alt="Event image">
             {%endif%}
@@ -87,8 +92,6 @@
                         {% if event.paymentAmount == 0 %}Free
                         {% else %}${{ event.paymentAmount }}
                         {% endif %}</p>
-                    <p class="info">{{ event.event_category_id }}</p>
-                    <p class="price">${{ event.paymentAmount }}</p>
             
                     <div class="additional-info">
                         <p class="info">
@@ -119,152 +122,6 @@
             </div>
         </div>
     {% endfor %}   
-   <!-- placeholder events
-    <div class="item-container">
-        <div class="img-container">
-            <img src="./static/img1.jpg" alt="Event image">
-        </div>
-
-        <div class="body-container">
-            <div class="overlay"></div>
-
-            <div class="event-info">
-                <p class="title">Bubbe's Book Club</p>
-                <div class="separator"></div>
-                <p class="info">Library South</p>
-                <p class="price">Free</p>
-
-                <div class="additional-info">
-                    <p class="info">
-                        <i class="fas fa-map-marker-alt"></i>
-                        100 Decatur St. SE, Atlanta, GA 30303
-                    </p>
-                    <p class="info">
-                        <i class="far fa-calendar-alt"></i>
-                        Sat, March 30, 10:00 AM EDT
-                    </p>
-                    <p class="info description">
-                        Welcome! Everyone has a unique perspective after reading a book, and we would love you
-                        to share yours with us! We meet one Sunday evening <span>more...</span>
-                    </p>
-                </div>
-            </div>
-            <a href="index.html"></a>
-            
-            <form action="{{ url_for('main.homepage') }}" method="GET">
-                <button class="action">Book it</button>
-            </form>
-        </div>
-    </div>
-
-    <div class="item-container">
-        <div class="img-container">
-            <img src="./static/img2.jpeg" alt="Event image">
-        </div>
-
-        <div class="body-container">
-            <div class="overlay"></div>
-
-            <div class="event-info">
-                <p class="title">Art Competition</p>
-                <div class="separator"></div>
-                <p class="info">Student Center East</p>
-                <p class="price">$10</p>
-
-                <div class="additional-info">
-                    <p class="info">
-                        <i class="fas fa-map-marker-alt"></i>
-                        100 Decatur St. SE, Atlanta, GA 30303
-                    </p>
-                    <p class="info">
-                        <i class="far fa-calendar-alt"></i>
-                        Sat, March 30, 10:00 AM EDT
-                    </p>
-
-                    <p class="info description">
-                        Welcome! Everyone has a unique perspective after reading a book, and we would love you
-                        to share yours with us! We meet one Sunday evening <span>more...</span>
-                    </p>
-                </div>
-            </div>
-            
-            <form action="{{ url_for('main.homepage') }}" method="GET">
-                <button class="action">Book it</button>
-            </form>
-        </div>
-    </div>
-
-    <div class="item-container">
-        <div class="img-container">
-            <img src="./static/img3.jpg" alt="Event image">
-        </div>
-
-        <div class="body-container">
-            <div class="overlay"></div>
-
-            <div class="event-info">
-                <p class="title">Resume Workshop</p>
-                <div class="separator"></div>
-                <p class="info">Library North</p>
-                <p class="price">$12</p>
-
-                <div class="additional-info">
-                    <p class="info">
-                        <i class="fas fa-map-marker-alt"></i>
-                        100 Decatur St. SE, Atlanta, GA 30303
-                    </p>
-                    <p class="info">
-                        <i class="far fa-calendar-alt"></i>
-                        Sat, March 30, 10:00 AM EDT
-                    </p>
-                    <p class="info description">
-                        Welcome! Everyone has a unique perspective after reading a book, and we would love you
-                        to share yours with us! We meet one Sunday evening <span>more...</span>
-                    </p>
-                </div>
-            </div>
-            
-            <form action="{{ url_for('main.homepage') }}" method="GET">
-                <button class="action">Book it</button>
-            </form>
-        </div>
-    </div>
-
-    <div class="item-container">
-        <div class="img-container">
-            <img src="./static/img4.jpg" alt="Event image">
-        </div>
-
-        <div class="body-container">
-            <div class="overlay"></div>
-
-            <div class="event-info">
-                <p class="title">Tech Conference</p>
-                <div class="separator"></div>
-                <p class="info">200 Landall hall</p>                    <p class="price">Free</p>
-
-                <div class="additional-info">
-                    <p class="info">
-                        <i class="fas fa-map-marker-alt"></i>
-                        100 Decatur St. SE, Atlanta, GA 30303
-                    </p>
-                    <p class="info">
-                        <i class="far fa-calendar-alt"></i>
-                        Sat, March 30, 10:00 AM EDT
-                    </p>
-                    <p class="info description">
-                        Welcome! Everyone has a unique perspective after reading a book, and we would love you
-                        to share yours with us! We meet one Sunday evening <span>more...</span>
-                    </p>
-                </div>
-            </div>
-            
-            <form action="{{ url_for('main.homepage') }}" method="GET">
-                <button class="action">Book it</button>
-            </form>
-        </div>
-    </div>
--->
 </div>
 {% endblock %}
 
