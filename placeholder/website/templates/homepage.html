@@ -70,7 +70,10 @@
                     <p class="title">{{ event.title }}</p>
                     <div class="separator"></div>
                     <p class="info">{{ event.category.event_category }}</p>
-                    <p class="price">${{ event.paymentAmount }}</p>
+                    <p class="price">
+                        {% if event.paymentAmount == 0 %}Free
+                        {% else %}${{ event.paymentAmount }}
+                        {% endif %}</p>
             
                     <div class="additional-info">
                         <p class="info">
@@ -79,7 +82,13 @@
                         </p>
                         <p class="info">
                             <i class="far fa-calendar-alt"></i>
+                            {% if event.start_date == event.end_date %}
                             {{ event.start_date }}
+                            {% else %}
+                            {{ event.start_date }} to {{ event.end_date }}
+                            {% endif %}
+                            <br>
+                            Time: {{ event.start_time }} - {{ event.end_time }}
                         </p>
                         <p class="info description">
                             {{ event.description }}<span>more...</span>
